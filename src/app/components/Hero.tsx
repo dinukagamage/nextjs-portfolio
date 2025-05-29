@@ -1,6 +1,4 @@
 'use client'
-
-import Link from 'next/link';
 import Image from 'next/image';
 import { FaGithub, FaLinkedin, FaInstagram, FaTiktok } from 'react-icons/fa';
 import { motion } from 'framer-motion';

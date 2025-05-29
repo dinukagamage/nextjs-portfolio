@@ -22,9 +22,8 @@ export default function Contact() {
   })
   const [status, setStatus] = useState<FormStatus>('idle')
 
-  // EmailJS credentials
   const EMAILJS_SERVICE_ID = 'service_718ic8t'
-  const EMAILJS_TEMPLATE_ID = 'template_is0iuwj' // Main template with auto-reply linked
+  const EMAILJS_TEMPLATE_ID = 'template_is0iuwj'
   const EMAILJS_PUBLIC_KEY = 'os7aOfA4plmKBPP2z'
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -32,27 +31,25 @@ export default function Contact() {
     setStatus('loading')
 
     try {
-      // Template parameters - EmailJS will handle auto-reply automatically
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
-        email: formData.email, // Important: This should match your auto-reply template's To Email field
+        email: formData.email,
         message: formData.message,
-        date: new Date().toLocaleDateString('en-US', { 
-          year: 'numeric', 
-          month: 'long', 
-          day: 'numeric' 
+        date: new Date().toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
         }),
-        time: new Date().toLocaleTimeString('en-US', { 
-          hour: '2-digit', 
+        time: new Date().toLocaleTimeString('en-US', {
+          hour: '2-digit',
           minute: '2-digit',
-          hour12: true 
+          hour12: true
         }),
         to_email: 'thdinukagamage@gmail.com',
         reply_to: 'thdinukagamage@gmail.com'
       }
 
-      // Send single email - auto-reply will be triggered automatically if properly configured
       const response = await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
@@ -61,86 +58,14 @@ export default function Contact() {
       )
 
       console.log('Email sent successfully:', response)
-      
+
       setStatus('success')
       setFormData({ name: '', email: '', message: '' })
 
-      // Reset status after 5 seconds
       setTimeout(() => setStatus('idle'), 5000)
-
     } catch (error) {
       console.error('Failed to send email:', error)
       setStatus('error')
-      
-      // Reset status after 5 seconds
-      setTimeout(() => setStatus('idle'), 5000)
-    }
-  }
-
-  // Alternative approach: Send two separate emails if auto-reply linking doesn't work
-  const handleSubmitAlternative = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setStatus('loading')
-
-    try {
-      // Template parameters for notification email (to you)
-      const notificationParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        message: formData.message,
-        date: new Date().toLocaleDateString('en-US', { 
-          year: 'numeric', 
-          month: 'long', 
-          day: 'numeric' 
-        }),
-        time: new Date().toLocaleTimeString('en-US', { 
-          hour: '2-digit', 
-          minute: '2-digit',
-          hour12: true 
-        }),
-        to_email: 'thdinukagamage@gmail.com'
-      }
-
-      // Template parameters for auto-reply email (to sender)
-      const autoReplyParams = {
-        to_name: formData.name,
-        to_email: formData.email,
-        user_name: formData.name, // Alternative parameter name
-        user_email: formData.email, // Alternative parameter name
-        from_name: 'Tharindu Dinuka Gamage',
-        reply_to: 'thdinukagamage@gmail.com'
-      }
-
-      // Send notification email to you
-      const notificationResponse = await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        notificationParams,
-        EMAILJS_PUBLIC_KEY
-      )
-
-      // Send auto-reply email to sender using the correct template ID
-      const autoReplyResponse = await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        'template_ygj6kyk', // Use your actual auto-reply template ID
-        autoReplyParams,
-        EMAILJS_PUBLIC_KEY
-      )
-
-      console.log('Notification sent:', notificationResponse)
-      console.log('Auto-reply sent:', autoReplyResponse)
-      
-      setStatus('success')
-      setFormData({ name: '', email: '', message: '' })
-
-      // Reset status after 5 seconds
-      setTimeout(() => setStatus('idle'), 5000)
-
-    } catch (error) {
-      console.error('Failed to send emails:', error)
-      setStatus('error')
-      
-      // Reset status after 5 seconds
       setTimeout(() => setStatus('idle'), 5000)
     }
   }
@@ -154,34 +79,33 @@ export default function Contact() {
 
   return (
     <div id="contact" className="container max-w-7xl mx-auto py-12">
-      <motion.h1 
+      <motion.h1
         className="text-4xl font-bold mb-8 text-center"
         {...fadeInUp}
       >
         Contact Me
       </motion.h1>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* Contact Information */}
-        <motion.div 
+        <motion.div
           className="space-y-8"
           {...slideInLeft}
         >
           <motion.div {...fadeInUp}>
             <h2 className="text-2xl font-semibold mb-4">Get in Touch</h2>
             <p className="text-secondary">
-              I&apos;m always open to discussing new projects, creative ideas, or
-              opportunities to be part of your visions.
+              I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
             </p>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="space-y-4"
             variants={fadeIn}
             initial="initial"
             animate="animate"
           >
-            <motion.div 
+            <motion.div
               className="flex items-center gap-4"
               variants={fadeInUp}
               whileHover={{ x: 10 }}
@@ -195,8 +119,8 @@ export default function Contact() {
                 </a>
               </div>
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               className="flex items-center gap-4"
               variants={fadeInUp}
               whileHover={{ x: 10 }}
@@ -210,8 +134,8 @@ export default function Contact() {
                 </a>
               </div>
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               className="flex items-center gap-4"
               variants={fadeInUp}
               whileHover={{ x: 10 }}
@@ -225,14 +149,14 @@ export default function Contact() {
             </motion.div>
           </motion.div>
         </motion.div>
-        
+
         {/* Contact Form */}
-        <motion.div 
+        <motion.div
           className="bg-white dark:bg-dark/50 p-6 rounded-lg shadow-md"
           {...slideInRight}
         >
-          <motion.form 
-            onSubmit={handleSubmit} // Use handleSubmitAlternative if needed
+          <motion.form
+            onSubmit={handleSubmit}
             className="space-y-6"
             variants={fadeIn}
             initial="initial"
@@ -252,7 +176,7 @@ export default function Contact() {
                 className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-dark focus:ring-2 focus:ring-primary focus:border-transparent"
               />
             </motion.div>
-            
+
             <motion.div variants={fadeInUp}>
               <label htmlFor="email" className="block text-sm font-medium mb-2">
                 Email
@@ -267,7 +191,7 @@ export default function Contact() {
                 className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-dark focus:ring-2 focus:ring-primary focus:border-transparent"
               />
             </motion.div>
-            
+
             <motion.div variants={fadeInUp}>
               <label htmlFor="message" className="block text-sm font-medium mb-2">
                 Message
@@ -282,7 +206,7 @@ export default function Contact() {
                 className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-dark focus:ring-2 focus:ring-primary focus:border-transparent"
               />
             </motion.div>
-            
+
             <motion.button
               type="submit"
               disabled={status === 'loading'}
@@ -292,19 +216,19 @@ export default function Contact() {
             >
               {status === 'loading' ? 'Sending...' : 'Send Message'}
             </motion.button>
-            
+
             {status === 'success' && (
-              <motion.p 
+              <motion.p
                 className="text-green-500 text-center font-medium"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                ✅ Message sent successfully! I'll get back to you soon.
+                ✅ Message sent successfully! I&apos;ll get back to you soon.
               </motion.p>
             )}
-            
+
             {status === 'error' && (
-              <motion.p 
+              <motion.p
                 className="text-red-500 text-center font-medium"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
