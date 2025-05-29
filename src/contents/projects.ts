@@ -8,7 +8,7 @@ export const projects: Project[] = [
         technologies: ['Next.js', 'Tailwind CSS', 'framer-motion', 'EmailJS'],
         githubLink: 'https://github.com',
         demoLink: 'https://demo.com',
-        image: '/projects/portfolio.png',
+        image: '/projects/myportfolio.jpg',
       },
       {
          title: 'Lecturer Appointment System',
