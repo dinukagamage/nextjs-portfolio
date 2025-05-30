@@ -51,7 +51,7 @@ export default function Hero() {
   ];
 
   return (
-    <section className="py-28 relative overflow-hidden">
+    <section className="py-23 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
           className="absolute top-20 left-10 w-20 h-20 bg-primary/5 rounded-full blur-xl"
