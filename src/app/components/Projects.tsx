@@ -11,7 +11,7 @@ export default function Projects() {
     <section className="py-20">
       <div id="projects" className="container max-w-7xl mx-auto px-4">
         <motion.h2 
-          className="text-3xl font-bold mb-12 text-center"
+          className="text-4xl font-bold mb-12 text-center"
           {...fadeInUp}
         >
           Featured Projects
