@@ -161,13 +161,16 @@ export default function Hero() {
             variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1 } }}
             transition={{ delay: 1.2, duration: 0.6 }}
           >
-            <a
-              href="/dinuka-CV.pdf"
-              download
+            <motion.a
+              href="https://drive.google.com/file/d/1QR_-03J7wRxo7_Qp1wa9xt0qd0wrF0za/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-all duration-300 flex items-center justify-center font-medium shadow-lg"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              Download Resume
-            </a>
+              View Resume
+            </motion.a>
           </motion.div>
 
           <motion.div
